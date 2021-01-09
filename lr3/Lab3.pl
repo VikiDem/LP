@@ -41,8 +41,12 @@ who('капуста','волк','коза').
 
 
 res1(Res):-%поиск в глубину
+get_time(Time1),
 path1([['волк','коза','капуста',0,0,0,0]],[0,0,0,0,X,Y,Z],Res),
-who(X,Y,Z).
+who(X,Y,Z),
+get_time(Time2),
+Time is Time2 - Time1,
+write('Время: '), write(Time).
 
 prolong([A|T],[B,A|T]):-
 go(A,B),
@@ -56,8 +60,12 @@ prolong(A,C), path1(C,B,Res).
 
 
 res2(Res):-%поиск в ширину
+get_time(Time1),
 path2(['волк','коза','капуста',0,0,0,0],[0,0,0,0,X,Y,Z],Res),
-who(X,Y,Z).
+who(X,Y,Z),
+get_time(Time2),
+Time is Time2 - Time1,
+write('Время: '), write(Time).
 
 path2(X,Y,Res):- bdth([[X]],Y,Res).
 
@@ -71,8 +79,12 @@ bdth(QO,X,Res).
 bdth([_|T],B,Res):- bdth(T,B,Res).
 
 res3(Res):-%поиск с итерационным заглублением
+get_time(Time1),
 search_id(['волк','коза','капуста',0,0,0,0],[0,0,0,0,X,Y,Z],Res),
-who(X,Y,Z).
+who(X,Y,Z),
+get_time(Time2),
+Time is Time2 - Time1,
+write('Время: '), write(Time).
 
 search_id(Start, Finish, Path, DepthLimit):-
 depth_id([Start], Finish, Path, DepthLimit).
